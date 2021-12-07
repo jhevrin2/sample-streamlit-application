@@ -2,6 +2,7 @@ import plotly.express as px
 import streamlit as st
 import time
 import numpy as np
+from iris.data import get_iris_data
 
 st.title("Plotting demo")
 st.markdown("Demonstration of Streamlit")
@@ -9,7 +10,7 @@ st.markdown("Demonstration of Streamlit")
 # Filtering dataset
 st.sidebar.title("Sidebar")
 radio = st.sidebar.radio("Species", options=['setosa', 'virginica', 'versicolor'])
-df = px.data.iris()
+df = get_iris_data()
 fig = px.scatter(df[df.species == radio], x="sepal_width", y="sepal_length", color="species")
 
 st.sidebar.title("Progress")
@@ -30,7 +31,5 @@ for i in range(1, 101):
     progress_bar.progress(i)
     last_rows = new_rows
     time.sleep(0.05)
-
-
 
 progress_bar.empty()
